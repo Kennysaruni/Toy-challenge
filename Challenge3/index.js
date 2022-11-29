@@ -1,5 +1,5 @@
-const Salary = (basic, benefits) => {
-    let taxablePay = basic - benefits;
+const netSalary = (basic, benefits) => {
+    let taxablePay = basic + benefits;
     let nssf = 200;
     let nhif;
     let paye;
@@ -45,14 +45,15 @@ const Salary = (basic, benefits) => {
       }
   
       if (taxablePay > 32333) {
-        paye = 24000 * 0.1 + 8333 * 0.25 + (taxablePay - 32333) * 0.3;
+        paye = 24000 * 0.1 + (8333 * 0.25) + ((taxablePay - 32333) * 0.3);
       } else if (taxablePay > 24000) {
-        paye = 24000 * 0.1 + (taxablePay - 24000) * 0.25;
+        paye = 24000 * 0.1 + ((taxablePay - 24000) * 0.25);
       } else if (taxablePay > 23999) {
         paye = 24000 * 0.1;
       }
       totalDeductions = paye - (nhif + nssf);
-      return taxablePay - totalDeductions;
+    //   return taxablePay - totalDeductions;
     }
+    console.log(taxablePay - totalDeductions);
   };
-  Salary()
+  netSalary(100000,0)
